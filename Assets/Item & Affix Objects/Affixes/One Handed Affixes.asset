@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd9997298f7f7c4a8b685e8fdee2ff9, type: 3}
+  m_Name: One Handed Affixes
+  m_EditorClassIdentifier: 
+  affixes:
+  - {fileID: 11400000, guid: 85ec8a5996df815489c2217a5ce3d6f5, type: 2}
+  - {fileID: 11400000, guid: 06b207a2d49691c4da7bbe5da103d2c2, type: 2}
+  - {fileID: 11400000, guid: 339284103b262484fb1bd5b21cdbdb38, type: 2}
+  - {fileID: 11400000, guid: 663d1820277888144947224adae03484, type: 2}
+  - {fileID: 11400000, guid: e5127b9c29ccb674b9a626e00b01035e, type: 2}
+  - {fileID: 11400000, guid: 2afca449bb1e9ad41adf3e63186177b9, type: 2}

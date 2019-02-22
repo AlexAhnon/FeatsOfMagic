@@ -1,0 +1,6 @@
+1: Strength
+2: Dexterity
+3: Intelligence
+4: Defense
+5: Damage
+6: Attack Speed
