@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bf4d8028893f1b44a599695c58affc9, type: 3}
-  m_Name: Healing Potion
+  m_Name: Healing Effect
   m_EditorClassIdentifier: 
   healthAmount: 50

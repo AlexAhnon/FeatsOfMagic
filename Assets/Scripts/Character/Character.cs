@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     private void Awake() {
         // Set the stats that we want in our stat panel.
         statPanel.SetStats(stats.ToArray());
-        statPanel.UpdateStatValues();
+        UpdateStatValues();
 
         // Initialize event handlers.
         // Right-click
@@ -81,9 +81,8 @@ public class Character : MonoBehaviour
     }
 
     private void ShowTooltip(ItemSlot itemSlot) {
-        EquippableItem equippableItem = itemSlot.item as EquippableItem;
-        if (equippableItem != null) {
-            itemTooltip.ShowTooltip(equippableItem);
+        if (itemSlot.item != null) {
+            itemTooltip.ShowTooltip(itemSlot.item);
         }
     }
 
@@ -138,7 +137,7 @@ public class Character : MonoBehaviour
                 }
             }
 
-            statPanel.UpdateStatValues();
+            UpdateStatValues();
 
             Item draggedItem = dragItemSlot.item;
             int draggedItemAmount = dragItemSlot.amount;
@@ -161,11 +160,11 @@ public class Character : MonoBehaviour
                     inventory.AddItem(previousItem);
                     // If there is an item in our equipment slot, unequip it and return it to inventory.
                     previousItem.Unequip(this);
-                    statPanel.UpdateStatValues();
+                    UpdateStatValues();
                 }
                 // Equip our new item to our slot.
                 item.Equip(this);
-                statPanel.UpdateStatValues();
+                UpdateStatValues();
             } else {
                 inventory.AddItem(item);
             }
@@ -177,7 +176,11 @@ public class Character : MonoBehaviour
         if (!inventory.IsFull() && equipmentPanel.RemoveItem(item)) {
             inventory.AddItem(item);
             item.Unequip(this);
-            statPanel.UpdateStatValues();
+            UpdateStatValues();
         }
+    }
+
+    public void UpdateStatValues() {
+        statPanel.UpdateStatValues();
     }
 }

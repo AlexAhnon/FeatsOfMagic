@@ -1138,14 +1138,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a4b0dcfd22f632f46a84cec7fa1de534, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cf0cab3fd507a646aec37e69a738fe7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1837,7 +1837,7 @@ GameObject:
   - component: {fileID: 420482262}
   - component: {fileID: 420482261}
   m_Layer: 5
-  m_Name: Item Class
+  m_Name: Item Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7089,7 +7089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemNameText: {fileID: 1381779136}
-  itemClassText: {fileID: 420482261}
+  itemTypeText: {fileID: 420482261}
   itemDescriptionText: {fileID: 1580122813}
 --- !u!1 &1283088392
 GameObject:
@@ -10670,7 +10670,7 @@ PrefabInstance:
     - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
         type: 3}
       propertyPath: startingItems.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
         type: 3}
@@ -10771,7 +10771,7 @@ PrefabInstance:
         type: 3}
       propertyPath: startingItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: dfc83ea4559d0f44d98b7b5a3ff46665,
+      objectReference: {fileID: 11400000, guid: b3e98ad0fd2478c44a84a75b2e327279,
         type: 2}
     - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
         type: 3}

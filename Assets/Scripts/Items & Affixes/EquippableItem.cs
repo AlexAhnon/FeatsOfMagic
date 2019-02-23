@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName ="Items/Equippable Item")]
 public class EquippableItem : Item
 {
     [Space]
@@ -41,6 +41,45 @@ public class EquippableItem : Item
                     c.stats[i].RemoveAllModifiersFromSource(this);
                 }
             }
+        }
+    }
+
+    public override string GetItemType() {
+        return equipmentType.ToString();
+    }
+
+    public override string GetDescription() {
+        sb.Length = 0;
+
+        foreach (ItemAffix affix in affixes) {
+            if (affix.modifierType == StatModifierType.Flat) {
+                AddStat(affix.value, affix.displayName);
+            } else if (affix.modifierType == StatModifierType.PercentMulti) {
+                AddStat(affix.value, affix.displayName, isPercent: true);
+            }
+        }
+
+        return sb.ToString();
+    }
+
+    private void AddStat(float value, string statName, bool isPercent = false) {
+        if (value != 0) {
+            if (sb.Length > 0) {
+                sb.AppendLine();
+            }
+
+            if (value > 0) {
+                sb.Append("+");
+            }
+
+            if (isPercent) {
+                sb.Append(value * 100);
+                sb.Append("% ");
+            } else {
+                sb.Append(value);
+                sb.Append(" ");
+            }
+            sb.Append(statName);
         }
     }
 }

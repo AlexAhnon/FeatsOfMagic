@@ -62,13 +62,13 @@ public class StatTooltip : MonoBehaviour
                 sb.Append("%");
             }
 
-            EquippableItem item = mod.source as EquippableItem;
+            Item item = mod.source as Item;
 
             if (item != null) {
                 sb.Append(" ");
                 sb.Append(item.displayName);
             } else {
-                Debug.LogError("Modifier is not an EquippableItem!");
+                Debug.LogError("Modifier is not an Item!");
             }
         }
 

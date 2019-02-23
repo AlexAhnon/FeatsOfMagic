@@ -13,4 +13,18 @@ public class UsableItem : Item
             effect.ExecuteEffect(this, character);
         }
     }
+
+    public override string GetItemType() {
+        return base.GetItemType();
+    }
+
+    public override string GetDescription() {
+        sb.Length = 0;
+
+        foreach (UsableItemEffect effect in effects) {
+            sb.AppendLine(effect.GetDescription());
+        }
+
+        return sb.ToString();
+    }
 }
