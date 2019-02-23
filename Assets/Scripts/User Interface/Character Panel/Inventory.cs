@@ -21,13 +21,13 @@ public class Inventory : MonoBehaviour, IItemContainer
     // Add handlers for all of our item slots.
     private void Start() {
         for (int i = 0; i < itemSlots.Length; i++) {
-            itemSlots[i].onPointerEnterEvent += onPointerEnterEvent;
-            itemSlots[i].onPointerExitEvent += onPointerExitEvent;
-            itemSlots[i].onRightClickEvent += onRightClickEvent;
-            itemSlots[i].onBeginDragEvent += onBeginDragEvent;
-            itemSlots[i].onEndDragEvent += onEndDragEvent;
-            itemSlots[i].onDragEvent += onDragEvent;
-            itemSlots[i].onDropEvent += onDropEvent;
+            itemSlots[i].onPointerEnterEvent += slot => onPointerEnterEvent(slot);
+            itemSlots[i].onPointerExitEvent += slot => onPointerExitEvent(slot);
+            itemSlots[i].onRightClickEvent += slot => onRightClickEvent(slot);
+            itemSlots[i].onBeginDragEvent += slot => onBeginDragEvent(slot);
+            itemSlots[i].onEndDragEvent += slot => onEndDragEvent(slot);
+            itemSlots[i].onDragEvent += slot => onDragEvent(slot);
+            itemSlots[i].onDropEvent += slot => onDropEvent(slot);
         }
 
         if (startingItems != null) {
@@ -59,22 +59,37 @@ public class Inventory : MonoBehaviour, IItemContainer
 
     // A call to refresh the UI when we want to.
     private void SetStartingItems() {
-        int i = 0;
-        for (; i < startingItems.Count && i < itemSlots.Length; i++) {
-            itemSlots[i].item = startingItems[i].GetCopy();
-            itemSlots[i].amount = 1;
+        Clear();
+
+        for (int i = 0; i < startingItems.Count; i++) {
+            AddItem(startingItems[i].GetCopy());
+        }
+    }
+
+    public virtual bool CanAddItem(Item item, int amount = 1) {
+        int freeSpaces = 0;
+
+        foreach (ItemSlot itemSlot in itemSlots) {
+            if (itemSlot.item == null || itemSlot.item.ID == item.ID) {
+                freeSpaces += item.maxStackSize - itemSlot.amount;
+            }
         }
 
-        for (; i < itemSlots.Length; i++) {
-            itemSlots[i].item = null;
-            itemSlots[i].amount = 0;
-        }
+        return freeSpaces >= amount;
     }
 
     // If inventory is not full, add the item and return true.
     public bool AddItem(Item item) {
         for (int i = 0; i < itemSlots.Length; i++) {
-            if (itemSlots[i].item == null || itemSlots[i].CanAddStack(item)) {
+            if (itemSlots[i].CanAddStack(item)) {
+                itemSlots[i].item = item;
+                itemSlots[i].amount++;
+                return true;
+            }
+        }
+
+        for (int i = 0; i < itemSlots.Length; i++) {
+            if (itemSlots[i].item == null) {
                 itemSlots[i].item = item;
                 itemSlots[i].amount++;
                 return true;
@@ -96,14 +111,13 @@ public class Inventory : MonoBehaviour, IItemContainer
         return false;
     }
 
-    public bool IsFull() {
-        for (int i = 0; i < itemSlots.Length; i++) {
-            if (itemSlots[i].item == null) {
-                return false;
-            }
+    public bool RemoveItemFromSlot(Item item, ItemSlot itemSlot) {
+        if (itemSlot.item == item) {
+            itemSlot.amount--;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public bool ContainsItem(Item item) {
@@ -120,10 +134,16 @@ public class Inventory : MonoBehaviour, IItemContainer
         int amount = 0;
         for (int i = 0; i < itemSlots.Length; i++) {
             if (itemSlots[i].item == item) {
-                amount++;
+                amount += itemSlots[i].amount;
             }
         }
 
         return amount;
+    }
+
+    public virtual void Clear() {
+        for (int i = 0; i < itemSlots.Length; i++) {
+            itemSlots[i].item = null;
+        }
     }
 }

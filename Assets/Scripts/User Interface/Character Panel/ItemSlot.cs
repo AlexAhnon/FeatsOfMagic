@@ -18,24 +18,29 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     public event Action<ItemSlot> onDragEvent;
     public event Action<ItemSlot> onDropEvent;
 
+    protected bool isPointerOver;
+
     private Color normalColor = Color.white;
     private Color disabledColor = new Color(1, 1, 1, 0);
 
     private Item _item;
     public Item item {
-        get {
-            return _item;
-        }
+        get { return _item; }
         
         set {
             _item = value;
-            if (image != null) {
-                if (_item == null) {
-                    image.color = disabledColor;
-                } else {
-                    image.sprite = _item.icon;
-                    image.color = normalColor;
-                }
+            if (_item == null && amount != 0) amount = 0;
+
+            if (_item == null) {
+                image.color = disabledColor;
+            } else {
+                image.sprite = _item.icon;
+                image.color = normalColor;
+            }
+
+            if (isPointerOver) {
+                OnPointerExit(null);
+                OnPointerEnter(null);
             }
         }
     }
@@ -46,7 +51,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         set {
             _amount = value;
             if (_amount < 0) _amount = 0;
-            if (_amount == 0) item = null;
+            if (_amount == 0 && item != null) item = null;
 
             if (amountText != null) {
                 amountText.enabled = _item != null && _amount > 1;
@@ -67,6 +72,12 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         }
     }
 
+    protected virtual void OnDisable() {
+        if (isPointerOver) {
+            OnPointerExit(null);
+        }
+    }
+
     public virtual bool CanAddStack(Item item, int amount = 1) {
         return this.item != null && this.item.ID == item.ID && this.amount + amount <= item.maxStackSize;
     }
@@ -84,12 +95,16 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
+        isPointerOver = true;
+
         if (onPointerEnterEvent != null) {
             onPointerEnterEvent(this);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData) {
+        isPointerOver = false;
+
         if (onPointerExitEvent != null) {
             onPointerExitEvent(this);
         }

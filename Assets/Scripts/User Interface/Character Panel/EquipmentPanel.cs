@@ -18,13 +18,13 @@ public class EquipmentPanel : MonoBehaviour
 
     private void Start() {
         for (int i = 0; i < equipmentSlots.Length; i++) {
-            equipmentSlots[i].onPointerEnterEvent += onPointerEnterEvent;
-            equipmentSlots[i].onPointerExitEvent += onPointerExitEvent;
-            equipmentSlots[i].onRightClickEvent += onRightClickEvent;
-            equipmentSlots[i].onBeginDragEvent += onBeginDragEvent;
-            equipmentSlots[i].onEndDragEvent += onEndDragEvent;
-            equipmentSlots[i].onDragEvent += onDragEvent;
-            equipmentSlots[i].onDropEvent += onDropEvent;
+            equipmentSlots[i].onPointerEnterEvent += slot => onPointerEnterEvent(slot);
+            equipmentSlots[i].onPointerExitEvent += slot => onPointerExitEvent(slot);
+            equipmentSlots[i].onRightClickEvent += slot => onRightClickEvent(slot);
+            equipmentSlots[i].onBeginDragEvent += slot => onBeginDragEvent(slot);
+            equipmentSlots[i].onEndDragEvent += slot => onEndDragEvent(slot);
+            equipmentSlots[i].onDragEvent += slot => onDragEvent(slot);
+            equipmentSlots[i].onDropEvent += slot => onDropEvent(slot);
         }
     }
 
@@ -39,6 +39,7 @@ public class EquipmentPanel : MonoBehaviour
             if (equipmentSlots[i].equipmentType == item.equipmentType) {
                 previousItem = (EquippableItem)equipmentSlots[i].item;
                 equipmentSlots[i].item = item;
+                equipmentSlots[i].amount = 1;
                 return true;
             }
         }

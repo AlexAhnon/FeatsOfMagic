@@ -6,7 +6,7 @@ public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 {
     private CharacterStat _stat;
     public CharacterStat stat {
-        get {return _stat; }
+        get { return _stat; }
         set {
             _stat = value;
             UpdateStatValue();

@@ -17,7 +17,7 @@ public class ItemChest : MonoBehaviour
             Debug.Log("Opened chest: " + this);
             //Item item = itemGenerator.GenerateRandomEquippableItem();
             inventory.AddItem(item.GetCopy());
-            isEmpty = true;
+            //isEmpty = true;
             hasClicked = false;
         }
 
@@ -45,7 +45,7 @@ public class ItemChest : MonoBehaviour
                 Debug.Log("Opened chest: " + this);
                 //Item item = itemGenerator.GenerateRandomEquippableItem();
                 inventory.AddItem(item.GetCopy());
-                isEmpty = true;
+                //isEmpty = true;
             }
         }
 

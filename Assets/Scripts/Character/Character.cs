@@ -68,7 +68,7 @@ public class Character : MonoBehaviour
             usableItem.Use(this);
 
             if (usableItem.isConsumable) {
-                inventory.RemoveItem(usableItem);
+                inventory.RemoveItemFromSlot(usableItem, itemSlot);
                 usableItem.Destroy();
             }
         }
@@ -120,16 +120,6 @@ public class Character : MonoBehaviour
         EquippableItem dragItem = dragItemSlot.item as EquippableItem;
         EquippableItem dropItem = itemSlot.item as EquippableItem;
 
-        if (dragItemSlot is EquipmentSlot) {
-            if (dragItem != null) {
-                dragItem.Unequip(this);
-            }
-
-            if (dropItem != null) {
-                dropItem.Equip(this);
-            }
-        }
-
         if (itemSlot is EquipmentSlot) {
             if (dragItem != null) {
                 dragItem.Equip(this);
@@ -137,6 +127,16 @@ public class Character : MonoBehaviour
 
             if (dropItem != null) {
                 dropItem.Unequip(this);
+            }
+        }
+
+        if (dragItemSlot is EquipmentSlot) {
+            if (dragItem != null) {
+                dragItem.Unequip(this);
+            }
+
+            if (dropItem != null) {
+                dropItem.Equip(this);
             }
         }
 
@@ -187,7 +187,7 @@ public class Character : MonoBehaviour
 
     // Unequip an item, only if our inventory isn't full.
     public void Unequip(EquippableItem item) {
-        if (!inventory.IsFull() && equipmentPanel.RemoveItem(item)) {
+        if (!inventory.CanAddItem(item) && equipmentPanel.RemoveItem(item)) {
             inventory.AddItem(item);
             item.Unequip(this);
             UpdateStatValues();
