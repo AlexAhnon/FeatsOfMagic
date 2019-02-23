@@ -3286,14 +3286,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0f82a2fa725f8db43a8d60fc9ed05fc3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cf0cab3fd507a646aec37e69a738fe7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5776,14 +5776,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: be30faefb35420d4ea714b11f4a899ab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cf0cab3fd507a646aec37e69a738fe7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7618,14 +7618,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1c6de978db7851247bc2d00d4b4f5729, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cf0cab3fd507a646aec37e69a738fe7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9805,14 +9805,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a4b0dcfd22f632f46a84cec7fa1de534, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cf0cab3fd507a646aec37e69a738fe7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10670,7 +10670,7 @@ PrefabInstance:
     - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
         type: 3}
       propertyPath: startingItems.Array.size
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
         type: 3}
@@ -10777,13 +10777,31 @@ PrefabInstance:
         type: 3}
       propertyPath: startingItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 6150d125001a25e4d867b69def9e339c,
+      objectReference: {fileID: 11400000, guid: b3e98ad0fd2478c44a84a75b2e327279,
         type: 2}
     - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
         type: 3}
       propertyPath: itemGenerator
       value: 
       objectReference: {fileID: 1063657012}
+    - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
+        type: 3}
+      propertyPath: startingItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b3e98ad0fd2478c44a84a75b2e327279,
+        type: 2}
+    - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
+        type: 3}
+      propertyPath: startingItems.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: b3e98ad0fd2478c44a84a75b2e327279,
+        type: 2}
+    - target: {fileID: 1957753557474957132, guid: 95d03b57ad93e784da9384a8867daf34,
+        type: 3}
+      propertyPath: startingItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: b3e98ad0fd2478c44a84a75b2e327279,
+        type: 2}
     - target: {fileID: 1744653201372385572, guid: 95d03b57ad93e784da9384a8867daf34,
         type: 3}
       propertyPath: m_LocalPosition.x

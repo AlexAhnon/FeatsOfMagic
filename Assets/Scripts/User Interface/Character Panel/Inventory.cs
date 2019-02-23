@@ -74,7 +74,7 @@ public class Inventory : MonoBehaviour, IItemContainer
     // If inventory is not full, add the item and return true.
     public bool AddItem(Item item) {
         for (int i = 0; i < itemSlots.Length; i++) {
-            if (itemSlots[i].item == null || (itemSlots[i].item.ID == item.ID && itemSlots[i].amount < item.maxStackSize)) {
+            if (itemSlots[i].item == null || itemSlots[i].CanAddStack(item)) {
                 itemSlots[i].item = item;
                 itemSlots[i].amount++;
                 return true;
@@ -89,9 +89,6 @@ public class Inventory : MonoBehaviour, IItemContainer
         for (int i = 0; i < itemSlots.Length; i++) {
             if (itemSlots[i].item == item) {
                 itemSlots[i].amount--;
-                if (itemSlots[i].amount == 0) {
-                    itemSlots[i].item = null;
-                }
                 return true;
             }
         }
