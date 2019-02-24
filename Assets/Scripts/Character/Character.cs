@@ -187,7 +187,7 @@ public class Character : MonoBehaviour
 
     // Unequip an item, only if our inventory isn't full.
     public void Unequip(EquippableItem item) {
-        if (!inventory.CanAddItem(item) && equipmentPanel.RemoveItem(item)) {
+        if (inventory.CanAddItem(item) && equipmentPanel.RemoveItem(item)) {
             inventory.AddItem(item);
             item.Unequip(this);
             UpdateStatValues();
