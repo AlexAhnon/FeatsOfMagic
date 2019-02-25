@@ -43,6 +43,7 @@ public class ItemGenerator : MonoBehaviour
                 break;
         }
 
+        // Combine shared affixes and item specific affixes.
         switch(item.type) {
             case ItemType.Helm:
                 item.affixes = GetListOfRandomAffixes(randomNum, sharedAffixes.affixes, armourAffixes.affixes);

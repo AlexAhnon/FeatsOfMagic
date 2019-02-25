@@ -8,7 +8,6 @@ public class Inventory : MonoBehaviour, IItemContainer
     [SerializeField] List<Item> startingItems = null;
     [SerializeField] Transform itemsParent = null;
     [SerializeField] ItemSlot[] itemSlots = null;
-    public ItemGenerator itemGenerator;
 
     public event Action<ItemSlot> onPointerEnterEvent;
     public event Action<ItemSlot> onPointerExitEvent;
@@ -31,18 +30,6 @@ public class Inventory : MonoBehaviour, IItemContainer
         }
 
         if (startingItems != null) {
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
-            startingItems.Add(itemGenerator.GenerateRandomEquippableItem());
             SetStartingItems();
         }
     }

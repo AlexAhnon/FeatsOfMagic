@@ -8,7 +8,7 @@ public class Axe : EquippableItem
     public int damage;
     public float attackSpeed;
     
-    public override void Equip(Character c) {
+    public override void Equip(CharacterManager c) {
         base.Equip(c);
 
         for (int i = 0; i < c.stats.Count; i++) {
@@ -20,7 +20,7 @@ public class Axe : EquippableItem
         }
     }
 
-    public override void Unequip(Character c) {
+    public override void Unequip(CharacterManager c) {
         base.Unequip(c);
 
         for (int i = 0; i < c.stats.Count; i++) {

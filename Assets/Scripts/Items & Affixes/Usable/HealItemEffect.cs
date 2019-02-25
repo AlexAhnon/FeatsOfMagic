@@ -5,7 +5,7 @@ public class HealItemEffect : UsableItemEffect
 {
     public int healthAmount;
 
-    public override void ExecuteEffect(UsableItem parentItem, Character character) {
+    public override void ExecuteEffect(UsableItem parentItem, CharacterManager character) {
         character.health += healthAmount;
     }
 

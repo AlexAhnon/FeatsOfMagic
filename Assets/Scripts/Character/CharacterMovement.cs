@@ -7,14 +7,16 @@ using UnityEngine.EventSystems;
 public class CharacterMovement : MonoBehaviour
 {
     private float attackDistance = 1.5f;
+    private float pickupDistance = 0.5f;
     public float attackRate = .5f;
     private float nextAttack;
 
     private NavMeshAgent navMeshAgent;
-    private GameObject targetedEnemy;
+    public GameObject targetObject;
 
     public bool walking;
     private bool enemyClicked;
+    public bool pickingUpItem;
     public bool isNearObject;
 
     private CharacterAttack attackScript;
@@ -34,10 +36,10 @@ public class CharacterMovement : MonoBehaviour
 
         if (Input.GetMouseButton(0)) {
             // Make it so player can't click on objects behind the user interface.
-            if (!EventSystem.current.IsPointerOverGameObject()) {
+            if (!UserInterfaceController.instance.isInventoryOpen) {
                 if (Physics.Raycast(ray, out hit, 100)) {
                     if (hit.collider.CompareTag("Enemy")) {
-                        targetedEnemy = hit.transform.gameObject;
+                        targetObject = hit.transform.gameObject;
                         enemyClicked = true;
                     } else {
                         if (isNearObject && !hit.collider.CompareTag("Terrain")) {
@@ -56,6 +58,10 @@ public class CharacterMovement : MonoBehaviour
             Attack();
         }
 
+        if (pickingUpItem) {
+            PickUpItem();
+        }
+
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance) {
             if (!navMeshAgent.hasPath || Mathf.Abs (navMeshAgent.velocity.sqrMagnitude) < float.Epsilon) {
                 walking = false;
@@ -66,7 +72,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     void Attack() {
-        if (targetedEnemy == null) {
+        if (targetObject == null) {
             return;
         }
 
@@ -76,31 +82,70 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetMouseButton(0)) {
             if (Physics.Raycast(ray, out hit, 100)) {
                 if (!hit.collider.CompareTag("Enemy")) {
-                    targetedEnemy = null;
+                    targetObject = null;
                     enemyClicked = false;
                     return;
                 }
             }
         }
 
-        navMeshAgent.destination = targetedEnemy.transform.position;
+        navMeshAgent.destination = targetObject.transform.position;
         if (navMeshAgent.remainingDistance >= attackDistance) {
             navMeshAgent.isStopped = false;
             walking = true;
         }
         
         if (navMeshAgent.remainingDistance <= attackDistance) {
-            transform.LookAt(targetedEnemy.transform);
+            transform.LookAt(targetObject.transform);
 
             if (Time.time > nextAttack) {
                 nextAttack = Time.time + attackRate;
-                attackScript.AutoAttack(targetedEnemy);
+                attackScript.AutoAttack(targetObject);
             }
 
             navMeshAgent.isStopped = true;
             walking = false;
 
             enemyClicked = false;
+        }
+    }
+
+    void PickUpItem() {
+        if (targetObject == null) {
+            return;
+        }
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (!EventSystem.current.IsPointerOverGameObject()) {
+            if (Input.GetMouseButton(0)) {
+                if (Physics.Raycast(ray, out hit, 100)) {
+                    if (!hit.collider.CompareTag("Item")) {
+                        targetObject = null;
+                        pickingUpItem = false;
+                        return;
+                    }
+                }
+            }
+        }
+
+        navMeshAgent.destination = targetObject.transform.position;
+        if (navMeshAgent.remainingDistance >= pickupDistance) {
+            navMeshAgent.isStopped = false;
+            walking = true;
+        }
+
+        if (navMeshAgent.remainingDistance <= pickupDistance) {
+            navMeshAgent.isStopped = true;
+            walking = false;
+
+            pickingUpItem = false;
+            
+            if (GameManager.instance.inventory.CanAddItem(targetObject.GetComponent<ItemDrop>().item)) {
+                GameManager.instance.inventory.AddItem(targetObject.GetComponent<ItemDrop>().item);
+                Destroy(targetObject);
+            }
         }
     }
 

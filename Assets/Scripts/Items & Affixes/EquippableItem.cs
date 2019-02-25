@@ -24,7 +24,7 @@ public class EquippableItem : Item
         Destroy(this);
     }
 
-    public virtual void Equip(Character c) {
+    public virtual void Equip(CharacterManager c) {
         foreach (ItemAffix affix in affixes) {
             for (int i = 0; i < c.stats.Count; i++) {
                 if (c.stats[i].id == affix.id) {
@@ -34,7 +34,7 @@ public class EquippableItem : Item
         }
     }
 
-    public virtual void Unequip(Character c) {
+    public virtual void Unequip(CharacterManager c) {
         foreach (ItemAffix affix in affixes) {
             for (int i = 0; i < c.stats.Count; i++) {
                 if (c.stats[i].id == affix.id) {

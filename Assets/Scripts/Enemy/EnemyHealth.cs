@@ -11,7 +11,9 @@ public class EnemyHealth : MonoBehaviour
     public bool isDead;
     private bool isSinking;
 
-    CapsuleCollider capsuleCollider;
+    private CapsuleCollider capsuleCollider;
+
+    public GameObject itemObject;
 
     void Awake() {
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -45,6 +47,14 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
 
         capsuleCollider.isTrigger = true;
+
+        int randomNum = Random.Range(1, 6);
+
+        for (int i = 0; i < randomNum; i++) {
+            GameObject itemDrop = Instantiate(itemObject, transform.position + (Vector3.right * Random.Range(-2f, 2f) + Vector3.forward * Random.Range(-2f, 2f)), Quaternion.identity);
+            itemDrop.SetActive(true);
+        }
+
         StartSinking();
     }
 

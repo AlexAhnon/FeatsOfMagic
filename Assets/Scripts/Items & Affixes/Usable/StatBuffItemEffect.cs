@@ -8,7 +8,7 @@ public class StatBuffItemEffect : UsableItemEffect
     public int buffAmount;
     public float duration;
 
-    public override void ExecuteEffect(UsableItem parentItem, Character character) {
+    public override void ExecuteEffect(UsableItem parentItem, CharacterManager character) {
         StatModifier modifier = new StatModifier(buffAmount, StatModifierType.Flat, parentItem);
         bool isAdded = false;
 
@@ -29,7 +29,7 @@ public class StatBuffItemEffect : UsableItemEffect
         return "Grants " + buffAmount + "buff for " + duration + " seconds.";
     }
 
-    private IEnumerator RemoveBuff(Character character, StatModifier modifier, float duration) {
+    private IEnumerator RemoveBuff(CharacterManager character, StatModifier modifier, float duration) {
         yield return new WaitForSeconds(duration);
 
         foreach (CharacterStat stat in character.stats) {

@@ -3,7 +3,6 @@
 public class ItemChest : MonoBehaviour
 {
     [SerializeField] Inventory inventory = null;
-    [SerializeField] ItemGenerator itemGenerator = null;
     public Item item;
     private Color originalColor;
 
@@ -15,7 +14,7 @@ public class ItemChest : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (hasClicked && !isEmpty) {
             Debug.Log("Opened chest: " + this);
-            //Item item = itemGenerator.GenerateRandomEquippableItem();
+            //Item item = GameManager.instance.itemGenerator.GenerateRandomEquippableItem();
             inventory.AddItem(item.GetCopy());
             //isEmpty = true;
             hasClicked = false;
@@ -43,7 +42,7 @@ public class ItemChest : MonoBehaviour
         if (isInRange) {
             if (!isEmpty) {
                 Debug.Log("Opened chest: " + this);
-                //Item item = itemGenerator.GenerateRandomEquippableItem();
+                //Item item = GameManager.instance.itemGenerator.GenerateRandomEquippableItem();
                 inventory.AddItem(item.GetCopy());
                 //isEmpty = true;
             }

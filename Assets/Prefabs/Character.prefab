@@ -14,10 +14,8 @@ GameObject:
   - component: {fileID: 7811328550853859938}
   - component: {fileID: 7811328550853859941}
   - component: {fileID: 7811328550853859937}
-  - component: {fileID: 3303080405098644674}
   - component: {fileID: 7811328550853859936}
   - component: {fileID: 84850707537099517}
-  - component: {fileID: 1957753557474957132}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -135,29 +133,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3303080405098644674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7811328550853859967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebb04335501600f488855154e8e8f9ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength:
-    baseValue: 0
-  dexterity:
-    baseValue: 0
-  intelligence:
-    baseValue: 0
-  inventory: {fileID: 0}
-  equipmentPanel: {fileID: 0}
-  statPanel: {fileID: 0}
-  itemTooltip: {fileID: 0}
-  draggableItem: {fileID: 0}
 --- !u!114 &7811328550853859936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +146,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRate: 0.5
+  targetObject: {fileID: 0}
   walking: 0
+  pickingUpItem: 0
   isNearObject: 0
 --- !u!114 &84850707537099517
 MonoBehaviour:
@@ -186,18 +163,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamage: 20
---- !u!114 &1957753557474957132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7811328550853859967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7de2d4c31c8df7e4580a366bcaf4f70d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingItems: []
-  itemsParent: {fileID: 0}
-  itemSlots: []
